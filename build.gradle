@@ -1,0 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.12.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'home'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url 'https://jitpack.io' }
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	testCompile('com.github.sbrannen:spring-test-junit5:1.0.3')
+	testCompile('org.springframework.boot:spring-boot-starter-test'){
+		exclude group: 'junit', module: 'junit'
+	}
+	testImplementation(
+			'org.junit.jupiter:junit-jupiter-api:5.1.0'
+	)
+	testRuntimeOnly(
+			'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+	)
+}
